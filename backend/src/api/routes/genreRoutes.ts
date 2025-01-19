@@ -5,6 +5,6 @@ import { UserController } from "../controllers";
 
 const genreRoutes = Router();
 
-genreRoutes.get('/genre',exceptionHandler(genreController.getGenre));
-genreRoutes.post('/postgenre',exceptionHandler(genreController.postGenre));
+genreRoutes.get('/',exceptionHandler(genreController.getGenre));
+genreRoutes.post('/',exceptionHandler(genreController.postGenre));
 export default genreRoutes;
