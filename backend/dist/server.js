@@ -13,7 +13,6 @@ const config_1 = require("./config");
 config_1.Database.connection();
 //Routes
 app.use("/api/v1", routes_1.default);
-app.use("/api/g1", routes_1.default);
 //Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);

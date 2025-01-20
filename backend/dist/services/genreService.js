@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.genreService = void 0;
+exports.GenreService = void 0;
 const models_1 = __importDefault(require("../models"));
-class genreService {
+class GenreService {
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield models_1.default.Genre.findAll();
@@ -24,8 +24,8 @@ class genreService {
     createData(data) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield models_1.default.Genre.create(data);
-            return data;
+            return result;
         });
     }
 }
-exports.genreService = genreService;
+exports.GenreService = GenreService;

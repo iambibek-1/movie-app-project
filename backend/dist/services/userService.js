@@ -24,7 +24,7 @@ class UserService {
     createData(data) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield models_1.default.User.create(data);
-            return data;
+            return result;
         });
     }
 }

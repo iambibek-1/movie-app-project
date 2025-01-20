@@ -4,7 +4,7 @@ import {Database} from "../config";
 const sequelize = Database.sequelize;
 
 const Genre = sequelize.define<any>(
-    "genre",
+    "genres",
     {
         id:{
             type: Sequelize.INTEGER,

@@ -14,7 +14,7 @@ const genreService_1 = require("../../services/genreService");
 class genreController {
     static getGenre(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const genre = yield new genreService_1.genreService().findAll();
+            const genre = yield new genreService_1.GenreService().findAll();
             return res.status(200).json({
                 success: true,
                 status: 200,
@@ -25,13 +25,17 @@ class genreController {
     }
     static postGenre(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const genre = yield new genreService_1.genreService().createData(req.body);
-            return res.status(201).json({
+            const data = req.body;
+            const genreService = new genreService_1.GenreService();
+            const newGenre = yield genreService.createData(data);
+            const responseJson = {
                 success: true,
                 status: 201,
                 message: "Genre created successfully",
-                data: genre,
-            });
+                data: newGenre,
+            };
+            console.log(responseJson);
+            return res.status(201).json(responseJson);
         });
     }
 }

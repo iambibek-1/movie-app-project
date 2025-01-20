@@ -12,7 +12,7 @@ Database.connection();
 
 //Routes
 app.use("/api/v1", router);
-app.use("/api/g1",router);
+
 
 //Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

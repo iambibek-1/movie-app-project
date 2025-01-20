@@ -9,6 +9,6 @@ export class UserService{
 
     public async createData(data: any){
         const result = await Models.User.create(data);
-        return data;
+        return result;
     }
 }

@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Sequelize = __importStar(require("sequelize"));
 const config_1 = require("../config");
 const sequelize = config_1.Database.sequelize;
-const Genre = sequelize.define("genre", {
+const Genre = sequelize.define("genres", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
