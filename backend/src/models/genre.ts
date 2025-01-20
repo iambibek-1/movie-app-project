@@ -1,9 +1,10 @@
 import * as Sequelize from 'sequelize';
 import {Database} from "../config";
+import { GenereModelInterface } from '../interfaces';
 
 const sequelize = Database.sequelize;
 
-const Genre = sequelize.define<any>(
+const Genre = sequelize.define<GenereModelInterface>(
     "genres",
     {
         id:{
@@ -19,7 +20,6 @@ const Genre = sequelize.define<any>(
     },
     {
         timestamps:false,
-
     }
 )
 export default Genre;  

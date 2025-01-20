@@ -34,7 +34,7 @@ class genreController {
                 message: "Genre created successfully",
                 data: newGenre,
             };
-            console.log(responseJson);
+            // console.log(responseJson)
             return res.status(201).json(responseJson);
         });
     }
