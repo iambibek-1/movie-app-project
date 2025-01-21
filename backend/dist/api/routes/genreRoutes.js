@@ -6,4 +6,6 @@ const middlewares_1 = require("../../middlewares");
 const genreRoutes = (0, express_1.Router)();
 genreRoutes.get('/', (0, middlewares_1.exceptionHandler)(genreController_1.genreController.getGenre));
 genreRoutes.post('/add', (0, middlewares_1.exceptionHandler)(genreController_1.genreController.postGenre));
+genreRoutes.patch('/:id', (0, middlewares_1.exceptionHandler)(genreController_1.genreController.update));
+genreRoutes.delete('/:id', (0, middlewares_1.exceptionHandler)(genreController_1.genreController.delete));
 exports.default = genreRoutes;

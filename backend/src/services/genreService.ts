@@ -11,4 +11,23 @@ export class GenreService{
         const result = await Models.Genre.create(data);
         return result;
     }
+    public async updateData( id:number, data:InputGenereInterface):Promise<boolean>{
+        const update = await Models.Genre.update(data,{
+            where:{
+                id:id,
+            },
+        });
+return update [0] === 0 ? false :true;
+    }
+
+    public async deleteData(id:number):Promise<number>{
+        const deleted = await Models.Genre.destroy({
+            where:{
+                id:id,
+            },
+        });
+        return deleted;
+    }
+
+    
 }

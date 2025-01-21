@@ -28,5 +28,34 @@ export class genreController {
         // console.log(responseJson)
         return res.status(201).json(responseJson)
     }
+    public static async update(req:Request , res:Response):Promise<Response>{
+        const id = req.params.id as unknown as number;
+        const data = req.body;
+
+
+        const update = await new GenreService().updateData(id,data);
+
+        if(update === false){
+            throw new Error(`Couldnot update genre with id${id}`);
+
+        }
+        return res.status(200).json({
+            success:true,
+            status:200,
+            message:"Genre updated successfully",
+            // data:update,
+        }) 
+    }
+    public static async delete(req:Request, res:Response):Promise<Response>{
+        const id = parseInt(req.params.id);
+        await new GenreService().deleteData(id);
+
+        return res.status(200).json({
+            success:true,
+            status:200,
+            message:"Genre deleted successfully",
+        });
+
+    }
 
 }

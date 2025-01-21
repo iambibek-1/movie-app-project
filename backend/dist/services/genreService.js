@@ -27,5 +27,25 @@ class GenreService {
             return result;
         });
     }
+    updateData(id, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const update = yield models_1.default.Genre.update(data, {
+                where: {
+                    id: id,
+                },
+            });
+            return update[0] === 0 ? false : true;
+        });
+    }
+    deleteData(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const deleted = yield models_1.default.Genre.destroy({
+                where: {
+                    id: id,
+                },
+            });
+            return deleted;
+        });
+    }
 }
 exports.GenreService = GenreService;

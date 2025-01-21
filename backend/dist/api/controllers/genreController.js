@@ -38,5 +38,32 @@ class genreController {
             return res.status(201).json(responseJson);
         });
     }
+    static update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = req.params.id;
+            const data = req.body;
+            const update = yield new genreService_1.GenreService().updateData(id, data);
+            if (update === false) {
+                throw new Error(`Couldnot update genre with id${id}`);
+            }
+            return res.status(200).json({
+                success: true,
+                status: 200,
+                message: "Genre updated successfully",
+                // data:update,
+            });
+        });
+    }
+    static delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = parseInt(req.params.id);
+            yield new genreService_1.GenreService().deleteData(id);
+            return res.status(200).json({
+                success: true,
+                status: 200,
+                message: "Genre deleted successfully",
+            });
+        });
+    }
 }
 exports.genreController = genreController;

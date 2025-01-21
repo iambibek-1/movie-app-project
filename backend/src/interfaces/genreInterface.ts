@@ -8,4 +8,4 @@ export interface GenereInterface extends InputGenereInterface{
 }
 
 export interface GenereModelInterface
-extends Sequelize.Model<GenereInterface,Partial<InputGenereInterface>>,GenereInterface{}
+extends Sequelize.Model<GenereInterface,Partial<InputGenereInterface>>,GenereInterface{} 
