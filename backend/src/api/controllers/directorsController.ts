@@ -14,6 +14,30 @@ export class directorsController {
       data: directors,
     });
   }
+  public static async getDirectorById(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+    const id = req.params.id as unknown as number;
+
+    const directors = await new DirectorsService().findOne(id);
+
+    if (!directors) {
+      return res.status(404).json({
+        success: false,
+        status: 404,
+        message: `Director with ID ${id} not found`,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      status: 200,
+      message: "Director retrieved successfully",
+      data: directors,
+    });
+  }
+
   public static async postDirectors(
     req: Request,
     res: Response
@@ -43,7 +67,7 @@ export class directorsController {
     return res.status(200).json({
       success: true,
       status: 200,
-      message: "DIrectors updated successfully",
+      message: "Directors updated successfully",
       // data:update,
     });
   }

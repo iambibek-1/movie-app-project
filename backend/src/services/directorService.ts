@@ -7,6 +7,14 @@ export class DirectorsService{
         const data = await Models.Director.findAll();
         return data;
     }
+    public async findOne(id: number): Promise<DirectorInterface | null> {
+        const data = await Models.Director.findOne({
+            where: {
+                id: id,
+            },
+        });
+        return data;
+    }
     public async createData(data:InputDirectorInterface):Promise<DirectorInterface>{
         const result = await Models.Director.create(data);
         return result;
