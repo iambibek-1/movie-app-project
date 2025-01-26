@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./userController"), exports);
 __exportStar(require("./genreController"), exports);
 __exportStar(require("./directorsController"), exports);
+__exportStar(require("./movieController"), exports);
