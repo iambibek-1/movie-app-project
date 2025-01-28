@@ -18,7 +18,7 @@ const Movie = sequelize.define<MovieModelInterface>(
             allowNull: false,
           },
           imdbScore: {
-            type: Sequelize.DECIMAL(11, 10),
+            type: Sequelize.DECIMAL(2, 1),
             defaultValue: 0.0,
             allowNull: false,
           },
@@ -53,7 +53,7 @@ const Movie = sequelize.define<MovieModelInterface>(
             allowNull: false,
           },
           avgRatings: {
-            type: Sequelize.DECIMAL(11, 10),
+            type: Sequelize.DECIMAL(2, 1),
             defaultValue: 0.0,
             allowNull: false,
           },
