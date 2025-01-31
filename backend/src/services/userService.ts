@@ -1,17 +1,43 @@
-import Models from '../models';
-import { InputUserInterface, UserInterface} from '../interfaces/userInterface';
-
+import Models from "../models";
+import { UserInterface,InputUserInterface } from "../interfaces/userInterface";
 
 
 export class UserService{
-    public async findAll():Promise<any>{
+    public async findAll():Promise <any>{
         const data = await Models.User.findAll();
         return data;
     }
 
-    public async createData(
-        data: InputUserInterface):Promise<UserInterface>{
+    public async findOne(id:number): Promise<UserInterface | null>{
+        const data = await Models.User.findOne({
+            where:{
+                id:id,
+            }
+        })
+        return data;
+    }
+
+    public async createData(data:InputUserInterface):Promise<UserInterface>{
         const result = await Models.User.create(data);
         return result;
     }
+
+    public async updateData(id:number,data:InputUserInterface):Promise<boolean>{
+        const update = await Models.User.update(data,{
+            where:{
+                id:id,
+            }
+        });
+        return update [0] === 0 ? false :true;
+    }
+
+    public async deleteData(id:number): Promise<number>{
+        const deleted = await Models.User.destroy({
+            where:{
+                id:id,
+            },
+        });
+        return deleted;
+    }
+
 }
