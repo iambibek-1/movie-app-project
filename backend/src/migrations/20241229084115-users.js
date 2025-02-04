@@ -30,7 +30,7 @@ module.exports = {
         allowNull:false,
       },
       role:{
-        type:Sequelize.ENUM,
+        type:Sequelize.TEXT,
         allowNull:false,
       }
     })

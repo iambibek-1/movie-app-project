@@ -23,6 +23,25 @@ class UserController {
             });
         });
     }
+    static getUserById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const email = req.params.email;
+            const users = yield new services_1.UserService().findOne(email);
+            if (!users) {
+                return res.status(404).json({
+                    success: false,
+                    status: 404,
+                    message: `User with this :${email} not found`,
+                });
+            }
+            return res.status(200).json({
+                success: true,
+                status: 200,
+                message: "User fetched successfully",
+                data: users,
+            });
+        });
+    }
     static postUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
@@ -32,6 +51,32 @@ class UserController {
                 status: 201,
                 message: "User created successfully",
                 data: users,
+            });
+        });
+    }
+    static update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = req.params.id;
+            const data = req.body;
+            const update = yield new services_1.UserService().updateData(id, data);
+            if (update === false) {
+                throw new Error(`Couldnot update directors with id${id}`);
+            }
+            return res.status(200).json({
+                success: true,
+                status: 200,
+                message: "User updated successfully",
+            });
+        });
+    }
+    static delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = parseInt(req.params.id);
+            yield new services_1.UserService().deleteData(id);
+            return res.status(200).json({
+                success: true,
+                status: 200,
+                message: "User deleted successfully",
             });
         });
     }

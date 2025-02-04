@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({ extended :true}));
 
 router.use(bodyParser.json());
 
-router.use('/users',userRoutes);
+router.use('/user',userRoutes);
 
 router.use('/genre',genreRoutes);
 

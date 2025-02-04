@@ -8,12 +8,12 @@ export class UserService{
         return data;
     }
 
-    public async findOne(id:number): Promise<UserInterface | null>{
+    public async findOne(email:string): Promise<UserInterface | null>{
         const data = await Models.User.findOne({
             where:{
-                id:id,
+                email : email,
             }
-        })
+        });
         return data;
     }
 

@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Sequelize = __importStar(require("sequelize"));
 const config_1 = require("../config");
+const enums_1 = require("../enums");
 const sequelize = config_1.Database.sequelize;
 const User = sequelize.define("users", {
     id: {
@@ -47,6 +48,20 @@ const User = sequelize.define("users", {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    role: {
+        type: Sequelize.ENUM(enums_1.RoleEnum.admin, enums_1.RoleEnum.user),
+        allowNull: false,
+        defaultValue: enums_1.RoleEnum.user,
+    }
 }, {
     timestamps: false,
 });

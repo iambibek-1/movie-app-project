@@ -15,16 +15,16 @@ export class UserController {
   }
 
   public static async getUserById(req:Request,res:Response):Promise<Response>{
-    const id = req.params.id as unknown as number;
+    const email = req.params.email;
 
 
-    const users = await new UserService().findOne(id);
+    const users = await new UserService().findOne(email);
 
     if (!users){
       return res.status(404).json({
         success:false,
         status: 404,
-        message: `User with ID ${id} not found`,
+        message: `User with this :${email} not found`,
       });
     }
     return res.status(200).json({
@@ -36,7 +36,7 @@ export class UserController {
   }
 
   public static async postUser(req:Request, res:Response):Promise<Response>{
-    console.log(req.body);
+
     const users = await new UserService().createData(req.body);
     return res.status(201).json({
       success: true,

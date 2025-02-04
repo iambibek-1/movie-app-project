@@ -1,12 +1,24 @@
 import {Request, Response } from "express";
+import { UserService } from "../../services";
+import bcrypt from 'bcrypt';
 
 export class AuthController {
   public static async signup(req: Request, res: Response): Promise<Response> {
     //Implementation
     const UserData = req.body();
 
+    const userExists = await new UserService().findOne(UserData.email);
 
+    if(userExists){
+      //return error response
+      return res.json(500).json({
+        message: `User with email: ${UserData.email} already exists!!`,
+        success: false,
+      })
+    }
 
+    const hashedPassword = await bcrypt.hash(UserData.password, 12);
+   
     /* 1.Extract the user data from the request body,
     2.Check if the user already exists in the database,
     hint:use the UserService.findone() service method to check if the user exists.
