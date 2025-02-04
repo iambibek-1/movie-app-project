@@ -44,7 +44,6 @@ class UserController {
     }
     static postUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.body);
             const users = yield new services_1.UserService().createData(req.body);
             return res.status(201).json({
                 success: true,

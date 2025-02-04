@@ -30,8 +30,9 @@ module.exports = {
         allowNull:false,
       },
       role:{
-        type:Sequelize.TEXT,
+        type:Sequelize.ENUM('user', 'admin'),
         allowNull:false,
+        defaultValue: 'user',
       }
     })
   },
@@ -43,6 +44,8 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
+     await queryInterface.dropTable('users');
+
   }
 };
 
