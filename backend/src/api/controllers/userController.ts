@@ -36,7 +36,6 @@ export class UserController {
   }
 
   public static async postUser(req:Request, res:Response):Promise<Response>{
-
     const users = await new UserService().createData(req.body);
     return res.status(201).json({
       success: true,
