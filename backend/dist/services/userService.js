@@ -26,7 +26,8 @@ class UserService {
             const data = yield models_1.default.User.findOne({
                 where: {
                     email: email,
-                }
+                },
+                raw: true,
             });
             return data;
         });

@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { UserService } from "../../services";
 import bcrypt from "bcrypt";
+import { jwtSecret } from "../../config";
+import jwt from "jsonwebtoken";
 
 export class AuthController {
   public static async signup(req: Request, res: Response): Promise<Response> {
@@ -29,33 +31,41 @@ export class AuthController {
       success: true,
       data: user,
     });
-
   }
 
-  // if 
+  // if
   public static async login(req: Request, res: Response): Promise<Response> {
     //Implementation
     const loginUser = req.body;
     const loginExist = await new UserService().findOne(loginUser.email);
 
-    if(!loginExist){
+    if (!loginExist) {
       return res.status(500).json({
         message: `User with email: ${loginUser.email} not signed in!!`,
         success: false,
       });
-      
     }
-    const doesPasswordMatch = await bcrypt.compare(loginUser.password,loginExist.password);
-    if(!doesPasswordMatch){
+    const doesPasswordMatch = await bcrypt.compare(
+      loginUser.password,
+      loginExist.password
+    );
+    if (!doesPasswordMatch) {
       return res.status(500).json({
-        message:'Invalid Password',
-        success:false,
+        message: "Invalid Password",
+        success: false,
       });
+    }
+    // console.log(loginExist);
+    const accessToken = jwt.sign(loginExist, jwtSecret, { expiresIn: "1d" });
+
+    // console.log(accessToken);
+    return res.status(200).json({
+      message: "Login successful.",
+      success: true,
+      data: {
+        accessToken,
+      },
+    });
   }
-  return res.status(200).json({
-    message: "Login successful.",
-    success: true,
-  });
-  
-}
+
 }

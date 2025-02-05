@@ -19,6 +19,7 @@ export const db={
     name:string;
     port:string;
     dialect:string;
-}
+};
+export const jwtSecret = process.env.JWT_SECRET_KEY as string;
 
 export * from './dbInstance';

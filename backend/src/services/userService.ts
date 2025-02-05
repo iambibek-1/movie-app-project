@@ -12,7 +12,9 @@ export class UserService{
         const data = await Models.User.findOne({
             where:{
                 email : email,
-            }
+
+            },
+            raw:true,
         });
         return data;
     }
