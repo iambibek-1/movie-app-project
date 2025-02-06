@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./userService"), exports);
 __exportStar(require("./genreService"), exports);
 __exportStar(require("./movieService"), exports);
+__exportStar(require("./directorService"), exports);

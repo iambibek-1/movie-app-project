@@ -14,7 +14,7 @@ export class UserService{
                 email : email,
 
             },
-            raw:true,
+
         });
         return data;
     }

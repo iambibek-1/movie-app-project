@@ -27,7 +27,6 @@ class UserService {
                 where: {
                     email: email,
                 },
-                raw: true,
             });
             return data;
         });
