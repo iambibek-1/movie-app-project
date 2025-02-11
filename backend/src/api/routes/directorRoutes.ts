@@ -14,6 +14,7 @@ directorRoutes.get(
 directorRoutes.post(
   "/add",
   exceptionHandler(Gaurd.grantAccess),
+  exceptionHandler(Gaurd.grantRole('admin')),
   exceptionHandler(Validator.check(createDirector)),
   exceptionHandler(directorsController.postDirectors)
 );

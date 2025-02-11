@@ -1,12 +1,17 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { jwtSecret } from "../config";
+import { CustomRequestInterface, UserInterface } from "../interfaces";
+
 export class Gaurd {
-  public static grantAccess(req: Request, res: Response, next: NextFunction) {
+  public static grantAccess(
+    req: CustomRequestInterface,
+    res: Response,
+    next: NextFunction
+  ) {
     //fetch access token from the req.headers
 
-    
-    const accessToken = req.headers.authorization?.split(' ')[1];
+    const accessToken = req.headers.authorization?.split(" ")[1];
 
     //check if the access token exists
 
@@ -27,21 +32,23 @@ export class Gaurd {
         message: "Invalid or expired access token",
       });
     }
+    req.user = decodedToken as UserInterface;
     //if (valid access token) next()
     next();
   }
 
-  public static grantAccessToDelete(req:Request, res:Response, next:NextFunction){
+  public static grantRole(role:string){
+   return( req: CustomRequestInterface,
+    res: Response,
+    next: NextFunction
+  ) =>{
+    if(req.user.role===role)
+        next();
 
-
-
-
-
-
-
+    return res.status(500).json({
+        success: false,
+        message: "Invalid or expired access token",
+      });
   }
-
-
-
-
+}
 }
