@@ -26,7 +26,9 @@ export class Gaurd {
     const decodedToken = jwt.verify(accessToken, jwtSecret);
     //if (invalid access token) return error response
 
+    // console.log(decodedToken);
     if (!decodedToken) {
+      // console.log('asjdksandlasnldkasndalks')
       return res.status(500).json({
         success: false,
         message: "Invalid or expired access token",
@@ -37,18 +39,15 @@ export class Gaurd {
     next();
   }
 
-  public static grantRole(role:string){
-   return( req: CustomRequestInterface,
-    res: Response,
-    next: NextFunction
-  ) =>{
-    if(req.user.role===role)
-        next();
-
-    return res.status(500).json({
-        success: false,
-        message: "Invalid or expired access token",
-      });
+  public static grantRole(role: string) {
+    return (req: CustomRequestInterface, res: Response, next: NextFunction) => {
+      if (req.user.role === role) next();
+      else {
+        return res.status(500).json({
+          success: false,
+          message: "Invalid or expired access token",
+        });
+      }
+    };
   }
-}
 }

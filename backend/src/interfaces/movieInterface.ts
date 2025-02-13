@@ -19,10 +19,14 @@ export interface MovieInterface extends InputMovieInterface {
 }
 export interface MovieModelInterface extends Sequelize.Model<MovieInterface,Partial<InputMovieInterface>>,MovieInterface{}
 
+export type CategoryType = 'popular' | 'top-rated' | 'latest';
+
 export interface ArgsMovieInterface{
     offset?:number;
     limit?:number;
     order:string;
     sort:'asc' | 'desc';
     searchQuery?:string;
+    genreId?:string;
+    category?:CategoryType;
 }

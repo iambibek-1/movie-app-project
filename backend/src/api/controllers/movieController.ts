@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { MovieService } from "../../services/movieService";
+import { CategoryType } from "../../interfaces";
 
 export class movieController{
     public static async getMovies(
@@ -8,6 +9,14 @@ export class movieController{
     ): Promise<Response>{
         const page = req.query.page ? +req.query.page: 1;
         const limit = req.query.limit ? +req.query.limit: 2;
+        const category = req.query.category as string;
+        const genreId = req.query.genreId ? req.query.genreId as string : undefined;
+
+
+
+
+//calculate your offset based on the page number and limit
+//offset based pagination
         const offset = (page - 1) * limit;
         const searchQuery = req.query.searchQuery as string;
 
@@ -17,7 +26,9 @@ export class movieController{
             limit:limit,
             order:'id',
             sort:'asc',
-            searchQuery:searchQuery
+            searchQuery:searchQuery,
+            category :category as CategoryType,
+            genreId:genreId
         });
         return res.status(200).json({
             success:true,
@@ -31,6 +42,9 @@ export class movieController{
         res:Response
     ): Promise<Response>{
         const data = req.body;
+        if(req.file){
+            data.thumbnailUrl = req.file.path;
+        }
         const movieService = new MovieService();
 
         const newMovie = await movieService.createMovie(data);
