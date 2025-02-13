@@ -2,13 +2,30 @@ import Models from "../models";
 import {
   MovieInterface,
   InputMovieInterface,
+  ArgsMovieInterface
 } from "../interfaces/movieInterface";
+import { Op } from "sequelize";
 
 export class MovieService {
-  public async findAll(): Promise<any> {
-    const data = await Models.Movie.findAll();
+  public async getMovie(args:ArgsMovieInterface):Promise<MovieInterface[]>{
+    let where ;
+    if (args.searchQuery){
+      where = {
+        title:{
+          [Op.like]: `%${args.searchQuery}%`
+        }
+      }
+    }
+    const data = await Models.Movie.findAll({
+      offset:args.offset,
+      limit:args.limit,
+      order:[[args.order,args.sort]],
+      where
+    });
     return data;
   }
+
+
   public async createMovie(data: InputMovieInterface): Promise<MovieInterface> {
     const result = await Models.Movie.create(data);
     return result;
