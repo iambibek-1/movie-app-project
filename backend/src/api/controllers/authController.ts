@@ -33,7 +33,7 @@ export class AuthController {
     });
   }
 
-  // if
+
   public static async login(req: Request, res: Response): Promise<Response> {
     //Implementation
     const loginUser = req.body;
@@ -56,12 +56,16 @@ export class AuthController {
       });
     }
     // console.log(loginExist);
-    const accessToken = jwt.sign({
-      id: loginExist.id,
-      email: loginExist.email,
-      name: loginExist.name,
-      role: loginExist.role,
-    }, jwtSecret, { expiresIn: "1d" });
+    const accessToken = jwt.sign(
+      {
+        id: loginExist.id,
+        email: loginExist.email,
+        name: loginExist.name,
+        role: loginExist.role,
+      },
+      jwtSecret,
+      { expiresIn: "1d" }
+    );
 
     // console.log(accessToken);
     return res.status(200).json({
@@ -72,5 +76,4 @@ export class AuthController {
       },
     });
   }
-
 }
